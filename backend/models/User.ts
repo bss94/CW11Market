@@ -17,7 +17,6 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
         if (!(this as HydratedDocument<UserFields>).isModified('username')) {
           return true;
         }
-
         const user = await User.findOne({username: value});
         return !user;
       },
