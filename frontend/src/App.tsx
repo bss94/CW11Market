@@ -5,6 +5,7 @@ import Login from './features/Users/Login.tsx';
 import {Typography} from '@mui/material';
 import Products from './features/Products/Products.tsx';
 import OneProduct from './features/Products/OneProduct.tsx';
+import NewProduct from './features/Products/NewProduct.tsx';
 
 
 const App = () => {
@@ -14,12 +15,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Products/>}/>
         <Route path="/products/:id" element={<OneProduct/>}/>
+        <Route path="/new-product" element={<NewProduct/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="*" element={<Typography variant="h1">Not found</Typography>}/>
       </Routes>
     </Layout>
-  )
+  );
 };
 
-export default App
+export default App;

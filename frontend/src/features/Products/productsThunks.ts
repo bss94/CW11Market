@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {OneProduct, Product} from '../../types.ts';
+import {OneProduct, Product, ProductMutation} from '../../types.ts';
 import axiosApi from '../../axiosApi.ts';
 import {RootState} from '../../app/store.ts';
 
@@ -32,3 +32,17 @@ export const deleteProduct = createAsyncThunk<void, string, { state: RootState }
     await axiosApi.delete(`/products/${productId}`, {headers: {'Authorization': `Bearer ${token}`}});
   }
 );
+export const createProduct = createAsyncThunk<void, ProductMutation, { state: RootState }>(
+  'createProduct',
+  async (productMutation, {getState}) => {
+    const token = getState().users.user?.token;
+    const formData = new FormData();
+    formData.append('category', productMutation.category);
+    formData.append('title', productMutation.title.trim());
+    formData.append('description', productMutation.description.trim());
+    formData.append('price', productMutation.price);
+    if (productMutation.image) {
+      formData.append('image', productMutation.image);
+    }
+    await axiosApi.post('/products', formData, {headers: {'Authorization': `Bearer ${token}`}});
+  });

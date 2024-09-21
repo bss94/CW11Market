@@ -11,6 +11,7 @@ import {API_URL} from '../../constants.ts';
 import {ImageCardMedia} from './components/ProductItem.tsx';
 import {selectUser} from '../Users/usersSlice.ts';
 import {LoadingButton} from '@mui/lab';
+import {toast} from 'react-toastify';
 
 const OneProduct = () => {
   const {id} = useParams() as { id: string };
@@ -29,9 +30,10 @@ const OneProduct = () => {
   const soldProduct = async (id: string) => {
     try {
       await dispatch(deleteProduct(id));
+      toast.success('Delete successfully');
       navigate('/');
     } catch (error) {
-
+      toast.error('Cant delete!Something wrong!');
     }
   };
 
@@ -49,7 +51,9 @@ const OneProduct = () => {
             loadingPosition="center"
             variant="contained"
             color="warning"
-            onClick={()=>{void soldProduct(product._id)}}
+            onClick={() => {
+              void soldProduct(product._id);
+            }}
           >
             <span>Sold</span>
           </LoadingButton>

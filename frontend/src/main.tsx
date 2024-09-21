@@ -6,6 +6,8 @@ import {PersistGate} from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 import App from './App.tsx'
+import 'react-toastify/dist/ReactToastify.min.css';
+import {ToastContainer} from 'react-toastify';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -13,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <BrowserRouter>
+          <ToastContainer position='bottom-left'/>
           <CssBaseline/>
           <App/>
         </BrowserRouter>

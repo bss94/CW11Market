@@ -22,14 +22,14 @@ const CategoriesMenu = () => {
   const currentCategory = useAppSelector(selectCurrentCategory);
 
   useEffect(() => {
-    dispatch(resetCategories())
+    dispatch(resetCategories());
     dispatch(fetchCategories());
   }, [dispatch]);
 
   const selectCategory = (category?: Category) => {
     if (category) {
       dispatch(changeCategory(category));
-      dispatch(fetchProductsByCategory(category._id))
+      dispatch(fetchProductsByCategory(category._id));
     } else {
       dispatch(resetCategory());
       dispatch(fetchProducts());
@@ -37,7 +37,7 @@ const CategoriesMenu = () => {
   };
 
   return (
-    <Grid container sx={{mt:2}}>
+    <Grid container sx={{mt: 2}}>
       <LoadingSpinner loading={loading}/>
       {!loading && (<Grid size={12}>
         <Button color={!currentCategory ? 'warning' : 'primary'}

@@ -35,13 +35,13 @@ productsRouter.delete('/:id', auth, async (req: RequestWithUser, res, next) => {
     }
     const productId = req.params.id;
     const product = await Product.findById(productId);
-    if(!product){
-      return res.status(404).send({error:'Product not found'});
+    if (!product) {
+      return res.status(404).send({error: 'Product not found'});
     }
-    if(product.author.toString() !== req.user.id){
+    if (product.author.toString() !== req.user.id) {
       return res.status(401).send({error: 'Unauthorized'});
     }
-    await product.deleteOne()
+    await product.deleteOne();
     return res.send({success: true});
   } catch (error) {
     next(error);
