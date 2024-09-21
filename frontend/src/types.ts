@@ -1,6 +1,8 @@
 export interface User {
   _id: string;
   username: string;
+  name:string;
+  phone:string;
   token: string;
 }
 
@@ -28,4 +30,31 @@ export interface ValidationError {
 
 export interface GlobalError {
   error: string;
+}
+
+export interface Category {
+  _id: string;
+  title: string;
+}
+export interface Author{
+  name:string;
+  phone:string;
+}
+export interface Product{
+  _id: string;
+  author: string;
+  category: Category;
+  title: string;
+  description: string;
+  price: number;
+  image:string;
+}
+export interface OneProduct{
+  _id: string;
+  author: Author;
+  category: Category;
+  title: string;
+  description: string;
+  price: number;
+  image:string;
 }

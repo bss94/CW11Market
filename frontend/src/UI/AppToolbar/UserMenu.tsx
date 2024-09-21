@@ -29,7 +29,7 @@ const UserMenu: React.FC<Props> = ({user}) => {
 
   return (
     <Grid>
-      <Button onClick={handleClick} color={'inherit'}>Hello, {user.username}!</Button>
+      <Button onClick={handleClick} color={'inherit'}>Hello, {user.name}!</Button>
       <Menu open={isOpen} anchorEl={anchorEl} keepMounted onClose={handleClose}>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
