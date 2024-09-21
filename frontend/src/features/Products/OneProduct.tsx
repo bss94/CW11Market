@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import Grid from '@mui/material/Grid2';
-import {Button, Card, CardContent, Typography} from '@mui/material';
+import {Button, Card, CardContent, CardMedia, styled, Typography} from '@mui/material';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useAppDispatch, useAppSelector} from '../../app/hooks.ts';
@@ -8,10 +8,14 @@ import LoadingSpinner from '../../UI/LoadingSpinner/LoadingSpinner.tsx';
 import {resetOneProduct, selectDeleteProduct, selectFetchOne, selectOneProduct} from './productsSlice.ts';
 import {deleteProduct, fetchOneProduct} from './productsThunks.ts';
 import {API_URL} from '../../constants.ts';
-import {ImageCardMedia} from './components/ProductItem.tsx';
 import {selectUser} from '../Users/usersSlice.ts';
 import {LoadingButton} from '@mui/lab';
 import {toast} from 'react-toastify';
+
+const ImageCardMedia = styled(CardMedia)({
+  height: 0,
+  paddingTop: '100%',
+});
 
 const OneProduct = () => {
   const {id} = useParams() as { id: string };

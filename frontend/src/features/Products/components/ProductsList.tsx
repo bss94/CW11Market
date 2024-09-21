@@ -3,20 +3,27 @@ import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner.tsx';
 import {useAppDispatch, useAppSelector} from '../../../app/hooks.ts';
 import {selectFetchingProducts, selectProducts} from '../productsSlice.ts';
 import {useEffect} from 'react';
-import {fetchProducts} from '../productsThunks.ts';
+import {fetchProducts, fetchProductsByCategory} from '../productsThunks.ts';
 import ProductItem from './ProductItem.tsx';
 import {Typography} from '@mui/material';
 import {selectCurrentCategory} from '../Categories/categoriesSlice.ts';
+import {useParams} from 'react-router-dom';
 
 const ProductsList = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectProducts);
   const currentCategory = useAppSelector(selectCurrentCategory);
   const loading = useAppSelector(selectFetchingProducts);
+  const {id} = useParams();
+
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    if (id) {
+      dispatch(fetchProductsByCategory(id));
+    } else {
+      dispatch(fetchProducts());
+    }
+  }, [id,dispatch]);
 
   return (
     <Grid container spacing={1}>

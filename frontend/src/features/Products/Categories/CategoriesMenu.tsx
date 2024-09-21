@@ -2,36 +2,28 @@ import Grid from '@mui/material/Grid2';
 import {Button} from '@mui/material';
 import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner.tsx';
 import {useAppDispatch, useAppSelector} from '../../../app/hooks.ts';
-import {
-  changeCategory, resetCategories,
-  resetCategory,
-  selectCategories,
-  selectCurrentCategory,
-  selectFetchCategories
-} from './categoriesSlice.ts';
+import {selectCategories, selectFetchCategories} from './categoriesSlice.ts';
 import {useEffect} from 'react';
 import {fetchCategories} from './categoriesThunks.ts';
-import {Category} from '../../../types.ts';
 import {fetchProducts, fetchProductsByCategory} from '../productsThunks.ts';
+import {useParams} from 'react-router-dom';
+import {StyledLink} from '../../../UI/AppToolbar/AppToolbar.tsx';
 
 
 const CategoriesMenu = () => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(selectFetchCategories);
   const categories = useAppSelector(selectCategories);
-  const currentCategory = useAppSelector(selectCurrentCategory);
+  const {id} = useParams();
 
   useEffect(() => {
-    dispatch(resetCategories());
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const selectCategory = (category?: Category) => {
+  const selectCategory = (category?: string) => {
     if (category) {
-      dispatch(changeCategory(category));
-      dispatch(fetchProductsByCategory(category._id));
+      dispatch(fetchProductsByCategory(category));
     } else {
-      dispatch(resetCategory());
       dispatch(fetchProducts());
     }
   };
@@ -40,19 +32,25 @@ const CategoriesMenu = () => {
     <Grid container sx={{mt: 2}}>
       <LoadingSpinner loading={loading}/>
       {!loading && (<Grid size={12}>
-        <Button color={!currentCategory ? 'warning' : 'primary'}
+        <Button color={!id ? 'warning' : 'primary'}
                 fullWidth
-                onClick={() => selectCategory()}>All Items
+                onClick={() => selectCategory()}>
+          <StyledLink to={`/`}>
+            All Items
+          </StyledLink>
         </Button>
       </Grid>)}
       {categories.length > 0 && categories.map((category) => (
         <Grid size={12} key={category._id}>
           <Button
-            color={currentCategory && category._id === currentCategory._id ? 'warning' : 'primary'}
+            color={id && category._id === id ? 'warning' : 'primary'}
             fullWidth
-            onClick={() => selectCategory(category)}
+            onClick={() => selectCategory(category._id)}
           >
-            {category.title}
+            <StyledLink to={`/category/${category._id}`}>
+              {category.title}
+            </StyledLink>
+
           </Button>
         </Grid>
       ))}

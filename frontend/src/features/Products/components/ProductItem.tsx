@@ -4,7 +4,7 @@ import React from 'react';
 import {API_URL} from '../../../constants.ts';
 import {StyledLink} from '../../../UI/AppToolbar/AppToolbar.tsx';
 
-export const ImageCardMedia = styled(CardMedia)({
+const ImageCardMedia = styled(CardMedia)({
   height: 0,
   paddingTop: '56.25%',
 });

@@ -57,7 +57,7 @@ const run = async () => {
       title: 'Alien coffee',
       description: 'Morty Smith favorite drink for sale on Earth',
       price: 500,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/alienCoffee.jpg'
     },
     {
       author: firstUser,
@@ -65,7 +65,7 @@ const run = async () => {
       title: 'Alien burger',
       description: 'Morty Smith favorite food for sale on Earth',
       price: 200,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/alienburger.jpg'
     },
     {
       author: firstUser,
@@ -73,7 +73,7 @@ const run = async () => {
       title: 'Myth Dragon',
       description: 'Morty Smith dreams dragon, but haves small defect',
       price: 1,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/dragon.jpeg'
     },
     {
       author: secondUser,
@@ -81,7 +81,7 @@ const run = async () => {
       title: 'Portal Gun',
       description: 'Unique portal gun, can open portal everywhere',
       price: 9999999,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/portal.jpg'
     },
     {
       author: secondUser,
@@ -89,7 +89,7 @@ const run = async () => {
       title: 'Plumbus',
       description: 'Just plumbus,I dont know for what, but I know i need it!',
       price: 10000,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/plumbus.png'
     },
     {
       author: secondUser,
@@ -105,7 +105,7 @@ const run = async () => {
       title: 'DeLorean with time machine',
       description: 'Unique car, can delivery You to any time, if cant then it just unique car',
       price: 1000000,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/delor.png'
     },
     {
       author: thirdUser,
@@ -113,7 +113,7 @@ const run = async () => {
       title: 'burger from 80s',
       description: 'Best taste of 1980',
       price: 10000,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/oldburger.png'
     },
     {
       author: thirdUser,
@@ -121,7 +121,7 @@ const run = async () => {
       title: 'Very old Cola',
       description: 'Very very old Cola from far far away',
       price: 1000,
-      image: 'fixtures/image-not-found.png'
+      image: 'fixtures/oldcola.jpg'
     },
   );
 
