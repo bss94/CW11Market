@@ -37,7 +37,7 @@ const CategoriesMenu = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container sx={{mt:2}}>
       <LoadingSpinner loading={loading}/>
       {!loading && (<Grid size={12}>
         <Button color={!currentCategory ? 'warning' : 'primary'}

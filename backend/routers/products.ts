@@ -18,8 +18,31 @@ productsRouter.get('/', async (req, res, next) => {
 productsRouter.get('/:id', async (req, res, next) => {
   try {
     const productId = req.params.id;
-    const products = await Product.findById(productId).populate('category', 'title').populate('author', ['name', 'phone']);
-    return res.send(products);
+    const product = await Product.findById(productId).populate('category', 'title').populate('author', ['name', 'phone']);
+    if (!product) {
+      return res.status(404).send({error: 'Product not found'});
+    }
+    return res.send(product);
+  } catch (error) {
+    next(error);
+  }
+});
+
+productsRouter.delete('/:id', auth, async (req: RequestWithUser, res, next) => {
+  try {
+    if (!req.user) {
+      return res.status(401).send({error: 'Unauthorized'});
+    }
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    if(!product){
+      return res.status(404).send({error:'Product not found'});
+    }
+    if(product.author.toString() !== req.user.id){
+      return res.status(401).send({error: 'Unauthorized'});
+    }
+    await product.deleteOne()
+    return res.send({success: true});
   } catch (error) {
     next(error);
   }

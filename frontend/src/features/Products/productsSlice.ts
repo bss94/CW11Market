@@ -1,6 +1,6 @@
 import {OneProduct, Product} from '../../types.ts';
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchProducts, fetchProductsByCategory} from './productsThunks.ts';
+import {deleteProduct, fetchOneProduct, fetchProducts, fetchProductsByCategory} from './productsThunks.ts';
 
 export interface ProductsState {
   products: Product[];
@@ -49,6 +49,27 @@ export const productsSlice = createSlice({
         state.products = products;
         state.fetching = false;
       });
+    builder.addCase(fetchOneProduct.pending, (state) => {
+      state.fetchOne = true;
+    })
+      .addCase(fetchOneProduct.rejected, (state) => {
+        state.fetchOne = false;
+      })
+      .addCase(fetchOneProduct.fulfilled, (state, {payload: product}) => {
+        state.oneProduct = product;
+        state.fetchOne = false;
+      });
+    builder.addCase(deleteProduct.pending, (state) => {
+      state.deleting = true;
+    })
+      .addCase(deleteProduct.rejected, (state) => {
+        state.deleting = false;
+      })
+      .addCase(deleteProduct.fulfilled, (state) => {
+        state.deleting = false;
+      });
+
+
   },
   selectors: {
     selectProducts: (state) => state.products,

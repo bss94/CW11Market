@@ -37,6 +37,7 @@ export interface Category {
   title: string;
 }
 export interface Author{
+  _id:string;
   name:string;
   phone:string;
 }
