@@ -1,11 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { Provider } from 'react-redux'
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+import {Provider} from 'react-redux';
 import {persistor, store} from './app/store.ts';
 import {PersistGate} from 'redux-persist/integration/react';
-import { BrowserRouter } from 'react-router-dom';
-import { CssBaseline } from '@mui/material';
-import App from './App.tsx'
+import {BrowserRouter} from 'react-router-dom';
+import {CssBaseline} from '@mui/material';
+import App from './App.tsx';
 import 'react-toastify/dist/ReactToastify.min.css';
 import {ToastContainer} from 'react-toastify';
 
@@ -15,11 +15,11 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <BrowserRouter>
-          <ToastContainer position='bottom-left'/>
+          <ToastContainer position="bottom-left"/>
           <CssBaseline/>
           <App/>
         </BrowserRouter>
       </PersistGate>
     </Provider>
   </StrictMode>,
-)
+);
